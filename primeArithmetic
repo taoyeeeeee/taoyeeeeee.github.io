@@ -1,0 +1,28 @@
+      function isPrime (number) {
+        if (number < 2){
+          return false;
+        } 
+        var fac = Math.sqrt(number);
+        for (var i = 2; i <= fac; i++) {
+          if(number%i == 0){
+            return false;
+          }
+        }
+        return true;
+      }
+
+      function range(start,finish) {
+        var max = Math.max(start,finish);
+        var min = Math.min(start,finish);
+        var result = [];
+        for (var i = min; i < max; i++) {
+         if (isPrime(i)){
+          result.push(i);
+         }
+        }
+        return result;
+      }
+      function test () {
+        var tag = range(0,100);
+        console.log(tag);
+      }
