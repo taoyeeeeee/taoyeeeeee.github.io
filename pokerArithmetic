@@ -1,0 +1,58 @@
+//洗牌算法
+// 洗牌
+
+      function shuffle (arr) {
+        if(!arr){
+          throw 'error';
+        }
+        var newArr = arr.slice(0);
+        for(var i=newArr.length-1;i>=0;i--){
+
+            var randomIndex = Math.floor(Math.random()*(i+1));
+            var itemAtIndex = newArr[randomIndex];
+            newArr[randomIndex] = newArr[i];
+            newArr[i] = itemAtIndex;
+        }
+        return newArr;
+      }
+      // 生成一副牌
+    function generatePoker() {
+      var cardType = ['黑','红','梅','方'];
+      var cardNumber = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+      var cardJoker = ['red joker','black joker'];
+      var allCards = []
+      for(var i=0;i<4;i++){
+        for (var j = 0; j <13; j++) {
+          allCards.push(cardType[i]+cardNumber[j]);
+        }
+      }
+      allCards = allCards.concat(cardJoker);
+      console.log(allCards);
+      return allCards;
+    }
+// 发牌
+    function dealPoker (num) {
+      if(!num||num>54||typeof(num)!=='number'){
+          throw 'error';
+      }
+      var allCards = generatePoker(); //生成一副牌
+
+      var randomCards = shuffle(allCards); //洗牌
+      return randomCards.slice(0,num); //返回一个新数组
+    }
+    
+//测试
+function test () {
+  var poker = dealPoker (54);
+
+    console.log(poker);
+
+    var arrA = [];
+    var arrB = [];
+    var arrC = [];
+    for (var i=0;i<17;i++){
+      var tag = poker.pop();
+      arrA[i] = tag
+    }
+    console.log(arrA);
+}
